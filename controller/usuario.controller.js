@@ -31,6 +31,8 @@ const usuariosGet = async (req = request, res) => {
     })
 };
 
+
+
 const usuariosPost = async (req, res) => {
 
 
@@ -73,13 +75,14 @@ const usuariosDelete = async  (req, res) => {
 
     const { id } = req.params;
 
+
     // Fisicamente borrar
     // const deleteUsuario = await Usuario.findByIdAndDelete(id);
 
     // Sigue existiendo pero su estado cambia a false o inabilitado, lo que le permite continuar con la integridad de la informacion
-    const usuarioInabilitado = await Usuario.findByIdAndUpdate( id, { estado: false })
-
-    res.json(usuarioInabilitado)
+    const usuario = await Usuario.findByIdAndUpdate( id, { estado: false })
+    
+    res.json( usuario )
 };
 
 

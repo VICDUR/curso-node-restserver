@@ -37,7 +37,9 @@ const UsuarioSchema = Schema({
 
 // generamos un metodo para el cual debe ir con la palabra function y esta funcion quita el password y el __V
 UsuarioSchema.methods.toJSON = function(){
-    const { __v, password, ...usuario } = this.toObject();
+    const { __v, password, _id, ...usuario } = this.toObject();
+    // cambiamos el nombre de la key _id por el uid solo en el postman a traves del metodods.toJSON
+    usuario.uid = _id;
     return usuario
 }
 
