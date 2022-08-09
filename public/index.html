@@ -31,6 +31,10 @@
     <script src="https://accounts.google.com/gsi/client" async defer></script>
 
     <script>
+        let url = (window.location.hostname.includes('localhost'))
+                ? 'http://localhost:8080/api/auth/google'
+                : 'https://restserver-curso-node-vic.herokuapp.com/api/auth/google'
+
         function handleCredentialResponse(response) {
             
             //Google Token : id_Token 
@@ -39,7 +43,7 @@
             const body = { id_token: response.credential}
 
             // debemos de expecificar el metodo post ya que fecth  tarbaj por default con el metodo  get
-            fetch('http://localhost:8080/api/auth/google', {
+            fetch(url, {
                 method: 'POST',
                 headers:{
                     'Content-Type': 'application/json'
